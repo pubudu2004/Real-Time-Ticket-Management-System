@@ -1,18 +1,20 @@
+import java.math.BigDecimal;
+
 public class Ticket {
     private int ticketID;
     private String eventName;
-    private double price;
+    private BigDecimal price;
 
-    public Ticket(int ticketID, String name, double price) {
+    public Ticket(int ticketID, String eventName, BigDecimal price) {
         this.ticketID = ticketID;
-        this.eventName = name;
+        this.eventName = eventName;
         this.price = price;
     }
     public int getTicketID() {return ticketID;}
     public String getEventName() {return eventName;}
-    public double getPrice() {return price;}
+    public BigDecimal getPrice() {return price;}
 
-    public void setPrice(double price) {this.price = price;}
+    public void setPrice(BigDecimal price) {this.price = price;}
     public void setTicketID(int ticketID) {this.ticketID = ticketID;}
     public void setEventName(String eventName) {this.eventName = eventName;}
 
