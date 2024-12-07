@@ -12,7 +12,7 @@ public class TicketPool {
     }
 
     // The addTicket method is used by vendor to add tickets
-    public void addTicket(Ticket ticket) {
+    public synchronized Ticket addTicket(Ticket ticket) {
         while (ticketQueue.size() >= maxTicketCapacity) {
             try{
                 wait();
@@ -25,15 +25,16 @@ public class TicketPool {
         this.ticketQueue.add(ticket); // adding te ticket to the queue
         notifyAll(); // Notifying all waiting threads (all threads will be notified)
         // Shows thread name, who added and current size of the pool
-        System.out.println(Thread.currentThread().getName() + ": Ticket added to the pool. Current size is "+ ticketQueue.size());
+        System.out.println(Thread.currentThread().getName() + " added ticket to the pool. Current size is "+ ticketQueue.size());
+        return ticket;
         
     }
 
-    // Buy ticket metjod used to remove tickets when customer buys a tickets
+    // Buy ticket method used to remove tickets when customer buys a tickets
     public synchronized Ticket buyTicket() {
         while (ticketQueue.isEmpty()) {
             try{
-                wait(); // Waiting if te queue is empty
+                wait(); // Waiting if the queue is empty
             }catch(InterruptedException e){
                 throw new RuntimeException(e.getMessage());
             }
@@ -41,7 +42,7 @@ public class TicketPool {
         Ticket ticket = ticketQueue.poll(); // Remove the ticket from the queue
         notifyAll(); // Notifying all waiting threads
         // Prints the message to show the thread name, who added and the current size of the pool.
-        System.out.println(Thread.currentThread().getName() + ": Ticket brought from the pool. Current size is "+ ticketQueue.size() + "Ticket is: "+ ticket);
+        System.out.println(Thread.currentThread().getName() + " brought ticket from the pool. Current size is "+ ticketQueue.size() + ". Ticket : "+ ticket);
         return ticket;
 
 

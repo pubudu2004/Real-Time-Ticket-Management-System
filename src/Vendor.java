@@ -4,9 +4,9 @@ public class Vendor implements Runnable {
 
     private TicketPool ticketPool; // The TicketPool which is shared by all the vendors and customers
     private int totalTickets; // The total tickets that vendor will make available
-    private double ticketReleaseRate; // The time delay to add tickets (Frequency of adding tickets)
+    private int ticketReleaseRate; // The time delay to add tickets (Frequency of adding tickets)
 
-    public Vendor(TicketPool ticketPool, int totalTickets, double ticketReleaseRate) {
+    public Vendor(TicketPool ticketPool, int totalTickets, int ticketReleaseRate) {
         this.ticketPool = ticketPool;
         this.totalTickets = totalTickets;
         this.ticketReleaseRate = ticketReleaseRate;
@@ -22,7 +22,7 @@ public class Vendor implements Runnable {
             // The ticket release frequency means the delay.
             // We should convert the value in Second to milliseconds
             try {
-                Thread.sleep((long) (ticketReleaseRate * 1000));
+                Thread.sleep(ticketReleaseRate * 1000);
             } catch (InterruptedException e){
                 throw new RuntimeException(e.getMessage());
             }

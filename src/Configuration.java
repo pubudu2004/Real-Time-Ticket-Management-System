@@ -42,23 +42,4 @@ public class Configuration implements Serializable {
     public void setMaxTicketCapacity(int maxTicketCapacity) {
         this.maxTicketCapacity = maxTicketCapacity;
     }
-
-    //Saving the configuration to a text file
-
-    public void saveFile(String filepath) {
-        try(BufferedWriter configDetails = new BufferedWriter(new FileWriter(filepath))){
-            configDetails.write("Ticket Release Rate: "+ticketReleaseRate+"\n");
-            configDetails.write("Total Tickets: "+totalTickets+"\n");
-            configDetails.write("Customer Retrieval Rate: "+customerRetrievalRate+"\n");
-            configDetails.write("Max Ticket Capacity: "+maxTicketCapacity+"\n");
-            System.out.println("Configuration saved successfully.");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
 }

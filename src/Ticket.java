@@ -20,9 +20,9 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket: " +
-                "ticketID=" + ticketID +
-                ", eventName='" + eventName + '\'' +
-                ", price=" + price;
+        return "{ Ticket: " +
+                "Ticket ID=" + ticketID +
+                ", Event Name='" + eventName + '\'' +
+                ", Price=" + price + "}";
     }
 }
